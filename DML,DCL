@@ -1,0 +1,50 @@
+Data Manipulation Language:
+  DML commands are used to modify the database. It is responsible for all form of changes in the database.
+  The command of DML is not auto-committed that means it can't permanently save all the changes in the database. They can be rollback.
+  Here are some commands that come under DML:
+  i)INSERT
+  ii)UPDATE
+  iii)DELETE
+  
+  
+i)INSERT: The INSERT statement is a SQL query. It is used to insert data into the row of a table.
+Syntax:
+INSERT INTO TABLE_NAME    
+(col1, col2, col3,.... col N)  
+VALUES (value1, value2, value3, .... valueN);  
+Or
+
+INSERT INTO TABLE_NAME    
+VALUES (value1, value2, value3, .... valueN);    
+For example:
+
+INSERT INTO Employee(emp_id,emp_name) VALUES (34,"Sonu");  
+
+ii)UPDATE: This command is used to update or modify the value of a column in the table.
+Syntax:
+UPDATE table_name SET [column_name1= value1,...column_nameN = valueN] [WHERE CONDITION]   
+For example:
+UPDATE Employee  
+SET Emp_name = 'Sana'    
+WHERE Emp_id = '30'  
+
+iii) DELETE: It is used to remove one or more row from a table.
+DELETE FROM table_name [WHERE condition];  
+For example:
+
+DELETE FROM  Employee 
+WHERE emp_id="30"; 
+
+
+3. Data Control Language
+DCL commands are used to grant and take back authority from any database user.
+Here are some commands that come under DCL:  
+  Grant
+  Revoke
+a. Grant: It is used to give user access privileges to a database.
+Example
+
+GRANT SELECT, UPDATE ON MY_TABLE TO SOME_USER, ANOTHER_USER;  
+b. Revoke: It is used to take back permissions from the user.
+Example
+REVOKE SELECT, UPDATE ON MY_TABLE FROM USER1, USER2;  
