@@ -1,0 +1,129 @@
+SQL  Constraints:
+
+Constraints are the rules that we can apply on the type of data in a table. 
+That is, we can specify the limit on the type of data that can be stored in a particular column in a table using constraints. 
+Types of constraints:
+A constraint is a rule that is used for optimization purposes.
+There are five types of constraints:
+
+i)A NOT NULL constraint is a rule that prevents null values from being entered into one or more columns within a table.
+
+ii)A unique constraint (also referred to as a unique key constraint) is a rule that forbids duplicate values in one or more columns within a table. Unique and primary keys are the supported unique constraints. For example, a unique constraint can be defined on the supplier identifier in the supplier table to ensure that the same supplier identifier is not given to two suppliers.
+
+iii)A primary key constraint is a column or combination of columns that has the same properties as a unique constraint. You can use a primary key and foreign key constraints to define relationships between tables.
+
+iv)A foreign key constraint (also referred to as a referential constraint or a referential integrity constraint) is a logical rule about values in one or more columns in one or more tables. For example, a set of tables shares information about a corporation's suppliers. Occasionally, a supplier's name changes. You can define a referential constraint stating that the ID of the supplier in a table must match a supplier ID in the supplier information. This constraint prevents insert, update, or delete operations that would otherwise result in missing supplier information.
+
+v)A check constraint (also called a check constraint) sets restrictions on data added to a specific table.
+
+
+1. NOT NULL – 
+If we specify a field in a table to be NOT NULL. 
+Then the field will never accept null value. 
+That is, you will be not allowed to insert a new row in the table without specifying any value to this field. 
+For example, the below query creates a table Student with the fields ID and NAME as NOT NULL. 
+That is, we are bound to specify values for these two fields every time we wish to insert a new row. 
+ CREATE TABLE Student
+(
+ID int(6) NOT NULL,
+NAME varchar(10) NOT NULL,
+ADDRESS varchar(20)
+);
+
+2. UNIQUE –
+This constraint helps to uniquely identify each row in the table. i.e. for a particular column, all the rows should have unique values.
+We can have more than one UNIQUE columns in a table. 
+For example, the below query creates a table Student where the field ID is specified as UNIQUE. i.e, no two students can have the same ID. 
+Unique constraint in detail. 
+ 
+
+CREATE TABLE Student
+(
+ID int(6) NOT NULL UNIQUE,
+NAME varchar(10),
+ADDRESS varchar(20)
+);
+
+3. PRIMARY KEY – 
+Primary Key is a field which uniquely identifies each row in the table.
+If a field in a table as primary key, then the field will not be able to contain NULL values as well as all the rows should have unique values for this field.
+So, in other words we can say that this is combination of NOT NULL and UNIQUE constraints. 
+A table can have only one field as primary key. Below query will create a table named Student and specifies the field ID as primary key. 
+ 
+
+CREATE TABLE Student
+(
+ID int(6) NOT NULL UNIQUE,
+NAME varchar(10),
+ADDRESS varchar(20),
+PRIMARY KEY(ID)
+);
+4. FOREIGN KEY – 
+Foreign Key is a field in a table which uniquely identifies each row of a another table. 
+That is, this field points to primary key of another table.
+This usually creates a kind of link between the tables. 
+
+(i) CHECK – 
+Using the CHECK constraint we can specify a condition for a field, which should be satisfied at the time of entering values for this field. 
+For example, the below query creates a table Student and specifies the condition for the field AGE as (AGE >= 18 ).
+That is, the user will not be allowed to enter any record in the table with AGE < 18. Check constraint in detail 
+ 
+
+CREATE TABLE Student
+(
+ID int(6) NOT NULL,
+NAME varchar(10) NOT NULL,
+AGE int NOT NULL CHECK (AGE >= 18)
+);
+(ii) DEFAULT – 
+This constraint is used to provide a default value for the fields. 
+That is, if at the time of entering new records in the table if the user does not specify any value for these fields then the default value will be assigned to them. 
+For example, the below query will create a table named Student and specify the default value for the field AGE as 18. 
+ 
+
+CREATE TABLE Student
+(
+ID int(6) NOT NULL,
+NAME varchar(10) NOT NULL,
+AGE int DEFAULT 18
+);
+
+
+Order By:
+  SQL ORDER BY Clause
+Whenever we want to sort the records based on the columns stored in the tables of the SQL database, then we consider using the ORDER BY clause in SQL.
+The ORDER BY clause in SQL will help us to sort the records based on the specific column of a table. 
+This means that all the values stored in the column on which we are applying ORDER BY clause will be sorted, and the corresponding column values will be displayed in the sequence in which we have obtained the values in the earlier step.
+Using the ORDER BY clause, we can sort the records in ascending or descending order as per our requirement.
+The records will be sorted in ascending order whenever the ASC keyword is used with ORDER by clause.
+DESC keyword will sort the records in descending order.
+If no keyword is specified after the column based on which we have to sort the records, in that case, the sorting will be done by default in the ascending order.
+Before writing the queries for sorting the records, let us understand the syntax.
+
+Syntax to sort the records in ascending order:
+SELECT ColumnName1,...,ColumnNameN FROM TableName  ORDER BY ColumnName ASC;    
+Syntax to sort the records in descending order:
+SELECT ColumnName1,...,ColumnNameN FROM TableName  ORDER BY ColumnNameDESC;    
+Syntax to sort the records in ascending order without using ASC keyword:
+SELECT ColumnName1,...,ColumnNameN FROM TableName  ORDER BY ColumnName; 
+
+Example:
+  SELECT *FROM customers ORDER BY Name ASC;  
+  
+  Rownum:
+  
+  For each row returned by a query, the ROWNUM pseudocolumn returns a number indicating the order in which Oracle selects the row from a table or set of joined rows.
+  The first row selected has a ROWNUM of 1, the second has 2, and so on.
+
+You can use ROWNUM to limit the number of rows returned by a query, as in this example:
+
+SELECT * FROM employees WHERE ROWNUM < 10;
+
+If an ORDER BY clause follows ROWNUM in the same query, then the rows will be reordered by the ORDER BY clause. 
+The results can vary depending on the way the rows are accessed. For example, if the ORDER BY clause causes Oracle to use an index to access the data, then Oracle may retrieve the rows in a different order than without the index.
+Therefore, the following statement will not have the same effect as the preceding example:
+
+SELECT * FROM employees WHERE ROWNUM < 11 ORDER BY last_name;
+
+
+
